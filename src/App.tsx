@@ -5,7 +5,9 @@ function App() {
   return (
     <div>
       <Alert>Hello World</Alert>
-      <Button>Woof</Button>
+      <Button onClick={() => console.log('clicked')} color='danger'>
+        Woof
+      </Button>
     </div>
   );
 }
