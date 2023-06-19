@@ -1,28 +1,20 @@
-import Alert from './components/Alert';
-import Button from './components/Button';
-import { useState } from 'react';
-import ListGroup from './components/ListGroup';
-//automatically looks for ListGroup/index
+import React, {useState} from 'react';
+import ExpenseList from "./expense-tracker/components/ExpenseList";
+
 
 function App() {
-  // const items = ['New York', 'Los Angeles', 'San Francisco'];
-  const [showAlert, setShowAlert] = useState(false);
-  // return (
-  //   <div>
-  //     <ListGroup heading='Miami' items={items} onSelectItem={}
-  //   </div>
-  //   )
-  return (
-    <div>
-      {showAlert && <Alert onClose={() => setShowAlert(false)}>My alert</Alert>}
-      <Button onClick={() => setShowAlert(true)} color='secondary'>
-        {/*passing setShowAlert as a fat arrow function ensures that the function
-      is not immediately called but is only executed when the button is
-      clicked.*/}
-        My Button
-      </Button>
-    </div>
-  );
+	const [expenses, setExpenses] = useState([
+		{ id: 1, description: 'aaa', amount: 10, category: 'Utilities'},
+		{ id: 2, description: 'bbb', amount: 10, category: 'Utilities'},
+		{ id: 3, description: 'ccc', amount: 10, category: 'Utilities'},
+		{ id: 4, description: 'ddd', amount: 10, category: 'Utilities'},
+	])
+
+	return (
+		<div>
+			<ExpenseList expenses={expenses} onDelete={ (id) => setExpenses(expenses.filter( (e) => e.id !== id))} />
+		</div>
+	);
 }
 
 export default App;
